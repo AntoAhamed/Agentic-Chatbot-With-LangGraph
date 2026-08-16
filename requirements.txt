@@ -1,0 +1,6 @@
+langgraph
+langchain-community
+langchain-core
+langchain-google-genai
+python-dotenv
+streamlit
