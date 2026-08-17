@@ -23,6 +23,7 @@ class ChatState(TypedDict):
 
 # chat node
 def chat_node(state: ChatState):
+
     messages = state["messages"]
     
     response = llm.invoke(messages)
@@ -49,7 +50,7 @@ thread_id = "thread-1"
 config = {'configurable': {'thread_id': thread_id}}
 
 # run
-initial_state = {"messages": [HumanMessage(content="What is my name?")]}
+initial_state = {"messages": [HumanMessage(content="Hello! How are you?")]}
 
 res = chatbot.invoke(initial_state, config=config)
 
