@@ -1,5 +1,5 @@
 # imports
-from agentic_chatbot_db_backend import chatbot, get_all_threads
+from agentic_chatbot_backend import chatbot
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
 import streamlit as st
 import uuid
@@ -40,7 +40,7 @@ if "message_history" not in st.session_state:
 
 # initialize session chat threads
 if "chat_threads" not in st.session_state:
-    st.session_state["chat_threads"] = get_all_threads()
+    st.session_state["chat_threads"] = []
 
 # add the current thread id
 add_thread(st.session_state["thread_id"])
