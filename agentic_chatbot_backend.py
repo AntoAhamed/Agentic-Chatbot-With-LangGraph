@@ -46,12 +46,12 @@ graph.add_edge("chat_node", END)
 chatbot = graph.compile(checkpointer=checkpoint)
 
 # initializing thread_id & config
-thread_id = "thread-1"
-config = {'configurable': {'thread_id': thread_id}}
+# thread_id = "thread-1"
+# config = {'configurable': {'thread_id': thread_id}}
 
 # run
-initial_state = {"messages": [HumanMessage(content="Hello! How are you?")]}
+# initial_state = {"messages": [HumanMessage(content="Hello! How are you?")]}
 
-res = chatbot.invoke(initial_state, config=config)
+# res = chatbot.invoke(initial_state, config=config)
 
-print(res["messages"][-1].content[0]["text"])
+# print(res["messages"][-1].content[0]["text"])
