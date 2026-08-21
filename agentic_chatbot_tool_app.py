@@ -1,5 +1,5 @@
 # imports
-from agentic_chatbot_rag_backend import chatbot, get_all_threads, ingest_rag_document
+from agentic_chatbot_tool_backend import chatbot, get_all_threads
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
 import streamlit as st
 import uuid
@@ -88,59 +88,7 @@ if "chat_threads" not in st.session_state:
 # add the current thread id
 # add_thread(st.session_state["thread_id"])
 
-# ======================= Side Bar ===========================
-
-# ============================================================
-# PDF UPLOAD FOR RAG (Only one active pdf file at a time)
-# ============================================================
-
-with st.sidebar:
-
-    st.subheader("📄 Upload PDF")
-
-    uploaded_file = st.file_uploader(
-        "Upload a PDF (Global Knowledge Base)",
-        type=["pdf"],
-        help="Upload a PDF and then ask questions about its content."
-    )
-
-    if uploaded_file is not None:
-
-        # Create temporary file
-        temp_pdf_path = "uploaded_document.pdf"
-
-        with open(temp_pdf_path, "wb") as f:
-            f.write(uploaded_file.getbuffer())
-
-
-        # Prevent re-processing the same file
-        if (
-            "uploaded_pdf_name" not in st.session_state
-            or st.session_state["uploaded_pdf_name"]
-            != uploaded_file.name
-        ):
-
-            with st.spinner("Processing PDF..."):
-
-                try:
-
-                    ingest_rag_document(
-                        temp_pdf_path
-                    )
-
-                    st.session_state[
-                        "uploaded_pdf_name"
-                    ] = uploaded_file.name
-
-                    st.success(
-                        f"✅ {uploaded_file.name} is ready!"
-                    )
-
-                except Exception as e:
-
-                    st.error(
-                        f"❌ Failed to process PDF: {str(e)}"
-                    )
+# =================================== Side Bar =====================================
 
 # sidebar title
 st.sidebar.title("History")
@@ -179,7 +127,7 @@ for thread_id in st.session_state["chat_threads"][::-1]:
 
         st.rerun()
 
-# ======================= Main Chat Interface ======================
+# ================================ Main Chat Interface ==============================
 
 # show all messages from the selected conversation
 for message in st.session_state["message_history"]:
