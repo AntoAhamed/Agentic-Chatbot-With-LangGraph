@@ -1,5 +1,5 @@
 # imports
-from agentic_chatbot_backend import chatbot
+from agentic_chatbot_backend.agentic_chatbot_backend import chatbot
 from langchain_core.messages import BaseMessage, HumanMessage, AIMessage
 import streamlit as st
 import uuid
